@@ -1,2 +1,4 @@
-/Compressed
-/ToCompress
+*.jpg
+*.png
+
+!Example.png
