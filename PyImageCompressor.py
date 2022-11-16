@@ -1,4 +1,4 @@
-import os
+import os 
 
 from PIL import Image
 
@@ -12,9 +12,14 @@ def compress(quality):
     
     for image in img_lst:
         file_path = TO_COMPRESS_PATH + f"\{image}"
+        before_size = os.path.getsize(file_path)
     
         picture = Image.open(file_path)
-        picture.save("Compressed" + f"\Qual{quality}_" + image, "JPEG", optimize = True, quality = quality)
+        compressed_filename = "Compressed" + f"\Qual{quality}_" + image
+        picture.save(compressed_filename, "JPEG", optimize = True, quality = quality)
+        after_size = os.path.getsize(os.getcwd() + f"\{compressed_filename}")
+        
+        print(f" {int(before_size/1024)}KB -> {int(after_size/1024)}KB  |   " + image)
 
 qual = input("Enter Compression Quality [1-Worst | 60-Best]: ")
 
